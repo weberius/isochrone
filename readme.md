@@ -1,6 +1,6 @@
 # isochrone
 
-Das Projekt isochrone erlaubt es, isochrone in einer Datenbank zu speichern. Es wird vorausgesetzt, dass die isochronen im geojson Format vorliegen. Das Projekt beruht zur Zeit auf dem export-Ergebnis von [openrouteserivce](https://www.openrouteservice.org/reach). Da der Service allgemeingültigkeit besitzen soll, ist es möglich, verschiedene Clients zu verwenden. Die Trennung schnittstellen-seitig erfolgt durch einen entsprechenden Pfad.
+Das Projekt isochrone erlaubt es, isochrone in einer Datenbank zu speichern. Es wird vorausgesetzt, dass die isochronen im geojson Format vorliegen. Das Projekt beruht zur Zeit auf dem export-Ergebnis von [openrouteserivce](https://www.openrouteservice.org/reach). Der Service soll verschiedene Clients unterstützen. Die Trennung schnittstellen-seitig erfolgt durch einen entsprechenden Pfad.
 
 # Status
 
