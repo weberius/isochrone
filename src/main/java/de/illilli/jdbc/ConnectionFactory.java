@@ -27,7 +27,7 @@ import de.illilli.opendata.service.Config;
  * 	username="username" 
  * 	password="password" 
  * 	driverClassName="org.postgresql.Driver"
- * 	url="jdbc:postgresql://server:5432/baumkataster" 
+ * 	url="jdbc:postgresql://server:5432/isochrone" 
  * 	maxTotal="25" 
  * 	maxIdle="10"
  * 	validationQuery="select 1" /&gt;

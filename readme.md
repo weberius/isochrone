@@ -49,6 +49,7 @@ TODD: /Diese Schnittstelle liefert alle für den Client gespeicherten isochronen
 | reachfactor |  | double precision |
 | center | Spalte für den Mittelpunkt des Polygons | POINT |
 | geom | Spalte für das Polygon | MULTIPOLYGON |
+| modtime | timestamp | Zeitpunkt zu dem der Datensatz eingefügt wurde |
 
 
 
@@ -58,7 +59,8 @@ TODD: /Diese Schnittstelle liefert alle für den Client gespeicherten isochronen
       client      varchar(128),
       value       integer, 
       area        double precision,
-      reachfactor double precision
+      reachfactor double precision,
+      modtime       timestamp DEFAULT current_timestamp
     );
     SELECT AddGeometryColumn ('public','isochrone','center',4326,'POINT',2);
     SELECT AddGeometryColumn ('public','isochrone','geom',4326,'MULTIPOLYGON',2);
