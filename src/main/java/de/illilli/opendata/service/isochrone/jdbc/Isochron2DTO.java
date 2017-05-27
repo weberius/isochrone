@@ -1,13 +1,14 @@
 package de.illilli.opendata.service.isochrone.jdbc;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.log4j.Logger;
 import org.geojson.Feature;
 import org.postgis.PGgeometry;
+
+import de.illilli.jdbc.Polygon2PGgeometry;
 
 /**
  * Diese Klasse erweitert IsochronDTO und konvertiert eine geojson Feature in
@@ -34,25 +35,9 @@ public class Isochron2DTO extends IsochronDTO {
 		pgPoint.setSrid(SRID);
 		setCenter(new PGgeometry(pgPoint));
 		// setGeom
-		org.postgis.Polygon[] polygons = null;
 
 		org.geojson.Polygon geojsonPolygon = (org.geojson.Polygon) feature.getGeometry();
-		List<List<org.geojson.LngLatAlt>> coordinates = geojsonPolygon.getCoordinates();
-		for (List<org.geojson.LngLatAlt> lngLatAltList : coordinates) {
-
-			List<org.postgis.Point> pointsList = new ArrayList<org.postgis.Point>();
-			for (org.geojson.LngLatAlt lngLatAlt : lngLatAltList) {
-				org.postgis.Point point = new org.postgis.Point(lngLatAlt.getLongitude(), lngLatAlt.getLatitude());
-				pointsList.add(point);
-			}
-			org.postgis.Point[] points = new org.postgis.Point[pointsList.size()];
-			points = pointsList.toArray(points);
-			org.postgis.LinearRing ring = new org.postgis.LinearRing(points);
-			org.postgis.LinearRing[] rings = new org.postgis.LinearRing[] { ring };
-			org.postgis.Polygon polygon = new org.postgis.Polygon(rings);
-			polygons = new org.postgis.Polygon[] { polygon };
-		}
-		org.postgis.Geometry pgMultiPolygon = new org.postgis.MultiPolygon(polygons);
+		org.postgis.Geometry pgMultiPolygon = new Polygon2PGgeometry(geojsonPolygon).getGeometry();
 
 		pgMultiPolygon.setSrid(SRID);
 		setGeom(new PGgeometry(pgMultiPolygon));
