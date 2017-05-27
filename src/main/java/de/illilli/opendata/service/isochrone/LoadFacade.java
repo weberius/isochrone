@@ -42,6 +42,8 @@ public class LoadFacade implements Facade {
 		int featureCounter = 0;
 		// first open connection
 		Connection conn = ConnectionFactory.getConnection();
+		// bisherige Daten löschen
+		new UpdateDao(new DeleteIsochroneByClient(client), conn).execute();
 		// get directory to check for files
 		File dir = FileHelper.getDataDirectory(client);
 		logger.info("use directory '" + dir.getAbsolutePath() + "'");
@@ -50,12 +52,10 @@ public class LoadFacade implements Facade {
 		for (File file : files) {
 			// read just geojson-Files
 			if (file.getName().endsWith(FileHelper.GEOJSON_TYPE)) {
-				// 1. read file and deserialize to geojson-Feature List
+				// read file and deserialize to geojson-Feature List
 				AskFor<List<Feature>> askfor = new AskForIsochrone(new FileInputStream(file));
 				List<Feature> features = askfor.getData();
-				// 2. bisherige Daten löschen
-				new UpdateDao(new DeleteIsochroneByClient(client), conn).execute();
-				// 3. Daten neu einlesen
+				// insert data
 				for (Feature feature : features) {
 					new InsertDao(new InsertIsochrone(new Isochron2DTO(client, feature)), conn).execute();
 					featureCounter++;
