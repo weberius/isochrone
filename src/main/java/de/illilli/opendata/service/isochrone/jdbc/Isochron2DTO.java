@@ -3,7 +3,6 @@ package de.illilli.opendata.service.isochrone.jdbc;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.log4j.Logger;
 import org.geojson.Feature;
 import org.postgis.PGgeometry;
@@ -24,7 +23,7 @@ public class Isochron2DTO extends IsochronDTO {
 
 	public Isochron2DTO(String client, Feature feature) throws SQLException {
 
-		setId(NumberUtils.toInt(feature.getId()));
+		setId((Integer) feature.getProperty("id"));
 		setClient(client);
 		setValue((Integer) feature.getProperty("value"));
 		setArea((Double) feature.getProperty("area"));

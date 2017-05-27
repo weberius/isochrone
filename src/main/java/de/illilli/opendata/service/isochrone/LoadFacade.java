@@ -18,11 +18,12 @@ import de.illilli.jdbc.ConnectionFactory;
 import de.illilli.jdbc.InsertDao;
 import de.illilli.jdbc.UpdateDao;
 import de.illilli.opendata.service.AskFor;
+import de.illilli.opendata.service.DefaultFacade;
 import de.illilli.opendata.service.Facade;
 import de.illilli.opendata.service.FileHelper;
 import de.illilli.opendata.service.isochrone.askfor.AskForIsochrone;
 import de.illilli.opendata.service.isochrone.jdbc.DeleteIsochroneByClient;
-import de.illilli.opendata.service.isochrone.jdbc.InsertIsochronByClient;
+import de.illilli.opendata.service.isochrone.jdbc.InsertIsochrone;
 import de.illilli.opendata.service.isochrone.jdbc.Isochron2DTO;
 
 /**
@@ -37,13 +38,15 @@ public class LoadFacade implements Facade {
 	private String json;
 
 	public LoadFacade(String client) throws SQLException, IOException, NamingException {
-
+		int fileCounter = 0;
+		int featureCounter = 0;
+		// first open connection
 		Connection conn = ConnectionFactory.getConnection();
-
+		// get directory to check for files
 		File dir = FileHelper.getDataDirectory(client);
 		logger.info("use directory '" + dir.getAbsolutePath() + "'");
 		List<File> files = FileHelper.getFiles(client);
-
+		// read files to process
 		for (File file : files) {
 			// read just geojson-Files
 			if (file.getName().endsWith(FileHelper.GEOJSON_TYPE)) {
@@ -54,13 +57,17 @@ public class LoadFacade implements Facade {
 				new UpdateDao(new DeleteIsochroneByClient(client), conn).execute();
 				// 3. Daten neu einlesen
 				for (Feature feature : features) {
-					new InsertDao(new InsertIsochronByClient(new Isochron2DTO(client, feature)), conn).execute();
+					new InsertDao(new InsertIsochrone(new Isochron2DTO(client, feature)), conn).execute();
+					featureCounter++;
 				}
 			}
+			fileCounter++;
 		}
-
+		// dont't forget to close connection
+		// closing at end of procedure
 		conn.close();
-
+		String msg = fileCounter + " files processed; " + featureCounter + " features loaded";
+		json = new DefaultFacade(DefaultFacade.INFO, msg).getJson();
 	}
 
 	@Override

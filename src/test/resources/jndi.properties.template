@@ -4,3 +4,5 @@ portnumber=5432
 databasename=isochrone
 user=isochrone
 password=isochrone
+
+InitialContext.bind=java:/comp/env/jdbc/isochrone
