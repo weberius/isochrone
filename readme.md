@@ -45,10 +45,10 @@ TODD: /Diese Schnittstelle liefert alle für den Client gespeicherten isochronen
 | id | id eines rings eines isochron | integer |
 | client |  | varchar(128) |
 | value |  | integer |
-| area |  | double precision |
+| area | Fläche des Polygons | double precision |
 | reachfactor |  | double precision |
-| center |  | POINT |
-| geom |  | MULTIPOLYGON |
+| center | Spalte für den Mittelpunkt des Polygons | POINT |
+| geom | Spalte für das Polygon | MULTIPOLYGON |
 
 
 
@@ -58,7 +58,7 @@ TODD: /Diese Schnittstelle liefert alle für den Client gespeicherten isochronen
       client      varchar(128),
       value       integer, 
       area        double precision,
-      reachfactor double precision,
+      reachfactor double precision
     );
     SELECT AddGeometryColumn ('public','isochrone','center',4326,'POINT',2);
     SELECT AddGeometryColumn ('public','isochrone','geom',4326,'MULTIPOLYGON',2);
