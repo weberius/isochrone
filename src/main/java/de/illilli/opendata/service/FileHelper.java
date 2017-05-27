@@ -20,7 +20,7 @@ public class FileHelper {
 	 */
 	public static File getDataDirectory(String client) {
 
-		String dir = Config.getProperty("data.directory") + File.pathSeparator + client + File.pathSeparator;
+		String dir = Config.getProperty("data.directory") + File.separator + client + File.separator;
 		File directory = new File(dir);
 		if (!directory.exists()) {
 			directory.mkdirs();
