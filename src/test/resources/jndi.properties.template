@@ -1,0 +1,6 @@
+# jndi parameter for testing only
+servername=localhost
+portnumber=5432
+databasename=isochrone
+user=isochrone
+password=isochrone
