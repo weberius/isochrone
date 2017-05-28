@@ -62,6 +62,14 @@ public class Service {
 		return facade.getJson();
 	}
 
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Path("/clients")
+	public String getClients() throws SQLException, NamingException, IOException {
+		Facade facade = new ClientsFacade();
+		return facade.getJson();
+	}
+
 	/**
 	 * <p>
 	 * Mit Hilfe dieser Schnittstelle werden die Daten in die Datenbank
