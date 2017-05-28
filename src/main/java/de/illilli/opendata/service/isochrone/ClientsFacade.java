@@ -21,7 +21,7 @@ import de.illilli.opendata.service.isochrone.model.Client;
 
 public class ClientsFacade implements Facade {
 
-	private List<ClientDTO> dtoList = new ArrayList<ClientDTO>();
+	List<ClientDTO> dtoList = new ArrayList<ClientDTO>();
 
 	public ClientsFacade() throws SQLException, NamingException, IOException {
 		Connection conn = ConnectionFactory.getConnection();
