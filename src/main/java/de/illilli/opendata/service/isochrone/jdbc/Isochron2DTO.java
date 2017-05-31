@@ -30,9 +30,16 @@ public class Isochron2DTO extends IsochronDTO {
 		// setValue
 		setValue((Integer) feature.getProperty("value"));
 		// setArea
-		setArea((Double) feature.getProperty("area"));
+		System.out.println("area: " + feature.getProperty("area"));
+		double area = 0.0;
+		if (feature.getProperty("area") instanceof Integer) {
+			area = (int) feature.getProperty("area");
+		} else {
+			area = (double) feature.getProperty("area");
+		}
+		setArea(area);
 		// setReachfactor
-		setReachfactor((Double) feature.getProperty("reachfactor"));
+		setReachfactor((double) feature.getProperty("reachfactor"));
 		// setCenter
 		List<Double> center = feature.getProperty("center");
 		org.postgis.Geometry pgPoint = new org.postgis.Point(center.get(0), center.get(1));
@@ -45,6 +52,13 @@ public class Isochron2DTO extends IsochronDTO {
 		setGeom(new PGgeometry(pgMultiPolygon));
 
 		logger.info(this.toString());
+	}
+
+	public boolean isDoubleInt(double d) {
+		// select a "tolerance range" for being an integer
+		double TOLERANCE = 1E-5;
+		// do not use (int)d, due to weird floating point conversions!
+		return Math.abs(Math.floor(d) - d) < TOLERANCE;
 	}
 
 }
