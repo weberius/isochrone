@@ -36,6 +36,9 @@ public class IsochronDTO {
 	private int value;
 	private double area;
 	private double reachfactor;
+	private double x;
+	private double y;
+	private String geojson;
 	private PGgeometry center;
 	private PGgeometry geom;
 	private Timestamp modtime;
@@ -88,6 +91,30 @@ public class IsochronDTO {
 		this.reachfactor = reachfactor;
 	}
 
+	public double getX() {
+		return x;
+	}
+
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public void setY(double y) {
+		this.y = y;
+	}
+
+	public String getGeojson() {
+		return geojson;
+	}
+
+	public void setGeojson(String geojson) {
+		this.geojson = geojson;
+	}
+
 	public PGgeometry getCenter() {
 		return center;
 	}
@@ -115,8 +142,8 @@ public class IsochronDTO {
 	@Override
 	public String toString() {
 		return "IsochronDTO [number=" + number + ", id=" + id + ", client=" + client + ", value=" + value + ", area="
-				+ area + ", reachfactor=" + reachfactor + ", center=" + center + ", geom=" + geom + ", modtime="
-				+ modtime + "]";
+				+ area + ", reachfactor=" + reachfactor + ", x=" + x + ", y=" + y + ", geojson=" + geojson + ", center="
+				+ center + ", geom=" + geom + ", modtime=" + modtime + "]";
 	}
 
 }

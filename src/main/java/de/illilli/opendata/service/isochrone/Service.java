@@ -72,6 +72,30 @@ public class Service {
 
 	/**
 	 * <p>
+	 * Liefert alle Isochrone zu einem client zurück.
+	 * </p>
+	 * <p>
+	 * Beispiel:
+	 * <a href="http://localhost:8080/isochrone/service/isochrone/test">
+	 * /isochrone /service/isochrone/{client}</a>
+	 * </p>
+	 * 
+	 * @param client
+	 * @return
+	 * @throws SQLException
+	 * @throws NamingException
+	 * @throws IOException
+	 */
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Path("/isochrone/{client}")
+	public String getIsochrone(@PathParam("client") String client) throws SQLException, NamingException, IOException {
+		Facade facade = new IsochroneFacade(client);
+		return facade.getJson();
+	}
+
+	/**
+	 * <p>
 	 * Mit Hilfe dieser Schnittstelle werden die Daten in die Datenbank
 	 * eingelesen. Die Daten müssen im GeoJson-Format und im in der config
 	 * definierten Verzeichnis vorliegen. Wird der Service aufgerufen, werden
