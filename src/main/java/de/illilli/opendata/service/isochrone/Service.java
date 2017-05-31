@@ -90,7 +90,14 @@ public class Service {
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Path("/isochrone/{client}")
 	public String getIsochrone(@PathParam("client") String client) throws SQLException, NamingException, IOException {
-		Facade facade = new IsochroneFacade(client);
+		String format = request.getParameter("format");
+
+		Facade facade = null;
+		if ("geojson".equals(format)) {
+			facade = new IsochroneGeojsonFacade(client);
+		} else {
+			facade = new IsochroneFacade(client);
+		}
 		return facade.getJson();
 	}
 
