@@ -75,9 +75,14 @@ public class Service {
 	 * Liefert alle Isochrone zu einem client zurück.
 	 * </p>
 	 * <p>
-	 * Beispiel:
-	 * <a href="http://localhost:8080/isochrone/service/isochrone/test">
-	 * /isochrone /service/isochrone/{client}</a>
+	 * Beispiele:
+	 * <ul>
+	 * <li><a href="http://localhost:8080/isochrone/service/isochrone/test">
+	 * /isochrone /service/isochrone/{client}</a></li>
+	 * <li><a href=
+	 * "http://localhost:8080/isochrone/service/isochrone/test?format=geojson">
+	 * /isochrone /service/isochrone/{client}?format=geojson</a></li>
+	 * </ul>
 	 * </p>
 	 * 
 	 * @param client
