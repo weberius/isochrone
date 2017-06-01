@@ -19,7 +19,11 @@ Diese Schnittstelle wird verwendet um zu prüfen, ob der Service selbst erreichb
 
 ## /isochrone/service/<client>
 
-TODD: /Diese Schnittstelle liefert alle für den Client gespeicherten isochronen aus. 
+Diese Schnittstelle liefert alle für den Client gespeicherten isochronen aus. Mit dem Übergabeparameter 'format=geojson' werden die Ergebnisse als geojson zurückgeliefert.
+
+## /isochrone/service/clients
+
+Diese Schnittstelle liefert Informationen zu allen auf dem System vorhandenen Clients.
 
 # Datenbank
 

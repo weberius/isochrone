@@ -62,6 +62,21 @@ public class Service {
 		return facade.getJson();
 	}
 
+	/**
+	 * <p>
+	 * Liefert Informationen zu den im System vorhandenen clients
+	 * </p>
+	 * Beispiel:
+	 * <ul>
+	 * <li><a href="http://localhost:8080/isochrone/service/clients"> /isochrone
+	 * /service/clients</a></li>
+	 * </ul>
+	 * 
+	 * @return
+	 * @throws SQLException
+	 * @throws NamingException
+	 * @throws IOException
+	 */
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Path("/clients")
@@ -77,11 +92,11 @@ public class Service {
 	 * <p>
 	 * Beispiele:
 	 * <ul>
-	 * <li><a href="http://localhost:8080/isochrone/service/isochrone/test">
-	 * /isochrone /service/isochrone/{client}</a></li>
+	 * <li><a href="http://localhost:8080/isochrone/service/test"> /isochrone
+	 * /service/{client}</a></li>
 	 * <li><a href=
-	 * "http://localhost:8080/isochrone/service/isochrone/test?format=geojson">
-	 * /isochrone /service/isochrone/{client}?format=geojson</a></li>
+	 * "http://localhost:8080/isochrone/service/test?format=geojson"> /isochrone
+	 * /service/{client}?format=geojson</a></li>
 	 * </ul>
 	 * </p>
 	 * 
@@ -93,7 +108,7 @@ public class Service {
 	 */
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	@Path("/isochrone/{client}")
+	@Path("/{client}")
 	public String getIsochrone(@PathParam("client") String client) throws SQLException, NamingException, IOException {
 		String format = request.getParameter("format");
 
