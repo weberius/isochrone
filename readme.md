@@ -17,7 +17,7 @@ Die Applikation befindet sich in der Entwicklung
 
 Diese Schnittstelle wird verwendet um zu prüfen, ob der Service selbst erreichbar ist.
 
-## /isochrone/service/<client>
+## /isochrone/service/{client}
 
 Diese Schnittstelle liefert alle für den Client gespeicherten isochronen aus. Mit dem Übergabeparameter 'format=geojson' werden die Ergebnisse als geojson zurückgeliefert.
 
