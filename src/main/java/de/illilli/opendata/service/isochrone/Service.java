@@ -110,6 +110,9 @@ public class Service {
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Path("/{client}")
 	public String getIsochrone(@PathParam("client") String client) throws SQLException, NamingException, IOException {
+
+		logger.info("calling '/isochrone/service/" + client + "'");
+
 		String format = request.getParameter("format");
 
 		Facade facade = null;
