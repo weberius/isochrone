@@ -22,11 +22,24 @@ function onEachFeature(feature, latlng) {
 	// empty by now
 }
 
-var colors = ['#a50026','#d73027','#f46d43','#fdae61','#fee08b','#ffffbf','#d9ef8b','#a6d96a','#66bd63','#1a9850','#006837'].reverse();
+// die Farben werden in einem zweidimensionalen Array abgelegt.
+// die erste Dimension steht für die Anzahl der Farben
+// farben werden mit colorbrewer bestimmt:
+// http://colorbrewer2.org/#type=diverging&scheme=RdYlGn&n=11
+var colors = new Array(9);
+colors[2] = ['#fc8d59','#ffffbf','#91cf60'].reverse();
+colors[3] = ['#d7191c','#fdae61','#a6d96a','#1a9641'].reverse();
+colors[4] = ['#d7191c','#fdae61','#ffffbf','#a6d96a','#1a9641'].reverse();
+colors[5] = ['#d73027','#fc8d59','#fee08b','#d9ef8b','#91cf60','#1a9850'].reverse();
+colors[6] = ['#d73027','#fc8d59','#fee08b','#ffffbf','#d9ef8b','#91cf60','#1a9850'].reverse();
+colors[7] = ['#d73027','#f46d43','#fdae61','#fee08b','#d9ef8b','#a6d96a','#66bd63','#1a9850'].reverse();
+colors[8] = ['#d73027','#f46d43','#fdae61','#fee08b','#ffffbf','#d9ef8b','#a6d96a','#66bd63','#1a9850'].reverse();
+colors[9] = ['#a50026','#d73027','#f46d43','#fdae61','#fee08b','#d9ef8b','#a6d96a','#66bd63','#1a9850','#006837'].reverse();
+colors[10] = ['#a50026','#d73027','#f46d43','#fdae61','#fee08b','#ffffbf','#d9ef8b','#a6d96a','#66bd63','#1a9850','#006837'].reverse();
 
 function polystyle(feature) {
     return {
-        fillColor: colors[feature.properties.id],
+        fillColor: colors[10][feature.properties.id],
         weight: 2,
         opacity: 1,
         color: 'white',  //Outline color
@@ -37,7 +50,6 @@ function polystyle(feature) {
 // user https://github.com/calvinmetcalf/leaflet-ajax
 var url = "/isochrone/service/test?format=geojson";
 var isochronLayer = new L.GeoJSON.AJAX(url, {
-
 	style: polystyle
 }).addTo(map);
 
