@@ -22,11 +22,23 @@ function onEachFeature(feature, latlng) {
 	// empty by now
 }
 
+var colors = ['#a50026','#d73027','#f46d43','#fdae61','#fee08b','#ffffbf','#d9ef8b','#a6d96a','#66bd63','#1a9850','#006837'].reverse();
+
+function polystyle(feature) {
+    return {
+        fillColor: colors[feature.properties.id],
+        weight: 2,
+        opacity: 1,
+        color: 'white',  //Outline color
+        fillOpacity: 0.5
+    };
+}
+
 // user https://github.com/calvinmetcalf/leaflet-ajax
 var url = "/isochrone/service/test?format=geojson";
 var isochronLayer = new L.GeoJSON.AJAX(url, {
-	pointToLayer : pointToLayer,
-	onEachFeature : onEachFeature
+
+	style: polystyle
 }).addTo(map);
 
 isochronLayer.on('data:loaded', function() {
