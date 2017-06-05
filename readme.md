@@ -33,7 +33,7 @@ Die Daten werden über die Schnittstelle '/isochrone/service/load/{client}' eing
 
 # User Interface
 
-Um die in der Datenbank vorhandenen Isochrone prüfen zu können, steht eine einfache Benutzeroberfläche auf Basis von leaflet zur Verfügung. Zur Verwendung muss in '/isochrone/src/main/webapp/assets/js/app.js' die url zum darzustellenden Isochron angepasst werden.
+Um die in der Datenbank vorhandenen Isochrone prüfen zu können, steht eine einfache Benutzeroberfläche auf Basis von leaflet zur Verfügung. Zur Verwendung muss in '/isochrone/src/main/webapp/assets/js/app.js' die url zum darzustellenden Isochron angepasst werden. Die Oberfläche ist über 'http://{server}:{port}/isochrone' erreichbar.
 
 # Datenbank
 
