@@ -2,6 +2,8 @@
 
 Das Projekt isochrone erlaubt es, isochrone in einer Datenbank zu speichern. Es wird vorausgesetzt, dass die isochronen im geojson Format vorliegen. Das Projekt beruht zur Zeit auf dem export-Ergebnis von [openrouteserivce](https://www.openrouteservice.org/reach). Der Service soll verschiedene Clients unterstützen. Die Trennung schnittstellen-seitig erfolgt durch einen entsprechenden Pfad.
 
+![Beispielhafte Darstellung eines Isochrons](isochron.png "Beispiel")
+
 # Status
 
 Die Applikation befindet sich in der Entwicklung
@@ -19,7 +21,7 @@ Diese Schnittstelle wird verwendet um zu prüfen, ob der Service selbst erreichb
 
 ## /isochrone/service/{client}
 
-Diese Schnittstelle liefert alle für den Client gespeicherten isochronen aus. Mit dem Übergabeparameter 'format=geojson' werden die Ergebnisse als geojson zurückgeliefert.
+Diese Schnittstelle liefert alle für den Client gespeicherten isochronen aus. Mit dem Übergabeparameter 'format=geojson' werden die Ergebnisse als geojson zurückgeliefert. Es werden jeweils nur die Bereiche zurückgeliefert, die nicht bereits durch ein kleineres Polygon belegt sind.
 
 ## /isochrone/service/clients
 
