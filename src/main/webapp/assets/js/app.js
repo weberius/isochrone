@@ -1,4 +1,6 @@
 var cartodbAttribution = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
+var url = "/isochrone/service/test?format=geojson";
+
 
 var cartoLight = L.tileLayer(
 		'http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
@@ -48,7 +50,6 @@ function polystyle(feature) {
 }
 
 // user https://github.com/calvinmetcalf/leaflet-ajax
-var url = "/isochrone/service/test?format=geojson";
 var isochronLayer = new L.GeoJSON.AJAX(url, {
 	style: polystyle
 }).addTo(map);
