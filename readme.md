@@ -80,6 +80,14 @@ Um die in der Datenbank vorhandenen Isochrone prüfen zu können, steht eine ein
     SELECT AddGeometryColumn ('public','isochrone','geom',4326,'MULTIPOLYGON',2);
     SELECT AddGeometryColumn ('public','isochrone','donut',4326,'MULTIPOLYGON',2);
     
+## DB-Tabellen initial einrichten
+
+    psql -h localhost -U isochrone -d isochrone -a -f src/main/sql/database.init.sql
+    
+## Auf Kommandozeile mit der Datenbank verbinden
+
+    psql -h localhost -U isochrone isochrone
+    
 ## Verbindungsparameter
 
 Die Datenbankverbindungsparameter werden per JNDI zur Verfügung gestellt. Dies bedeutet, dass sie im Container definiert sein müssen. Für den Online-Betrieb mit
