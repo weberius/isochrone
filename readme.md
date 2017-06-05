@@ -27,6 +27,10 @@ Diese Schnittstelle liefert alle für den Client gespeicherten isochronen aus. M
 
 Diese Schnittstelle liefert Informationen zu allen auf dem System vorhandenen Clients.
 
+## /isochrone/service/load/{client}
+
+Die Daten werden über die Schnittstelle '/isochrone/service/load/{client}' eingelesen. Diese kann nur von localhost aus aufgerufen werden. Die einzulesenden Daten müssen im Verzeichnis '/var/cache/isochrone' in Form einer Geojson Daten vorliegen. Die Datei muss den Namen des clients haben (z.B. test.geojson). Liegt keine passsende Datei vor, können keine Daten eingelesen werden. Der Load-Mechanismus sieht vor, dass alle von [openrouteserivce](https://www.openrouteservice.org/reach) benutzten Felder vorhanden sind werden.
+
 # User Interface
 
 Um die in der Datenbank vorhandenen Isochrone prüfen zu können, steht eine einfache Benutzeroberfläche auf Basis von leaflet zur Verfügung. Zur Verwendung muss in '/isochrone/src/main/webapp/assets/js/app.js' die url zum darzustellenden Isochron angepasst werden.
