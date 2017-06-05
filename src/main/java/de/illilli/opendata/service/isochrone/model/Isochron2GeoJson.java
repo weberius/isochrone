@@ -29,8 +29,10 @@ public class Isochron2GeoJson {
 		properties.put("value", dto.getValue());
 		feature.setProperties(properties);
 
-		GeoJsonObject geomertry = new ObjectMapper().readValue(dto.getGeojson(), GeoJsonObject.class);
-		feature.setGeometry(geomertry);
+		if (dto.getGeojson() != null) {
+			GeoJsonObject geomertry = new ObjectMapper().readValue(dto.getGeojson(), GeoJsonObject.class);
+			feature.setGeometry(geomertry);
+		}
 	}
 
 	public Feature getFeature() {
