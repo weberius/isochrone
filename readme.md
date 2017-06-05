@@ -46,15 +46,15 @@ Diese Schnittstelle liefert Informationen zu allen auf dem System vorhandenen Cl
 | Spalte | Typ | Beschreibung |
 | ------ | --- | ------------ |
 | number | serial | eindeutige nummer über alle gespeicherten Datensätze |
-| id | id eines rings eines isochron | integer |
-| client |  | varchar(128) |
-| value |  | integer |
-| area | Fläche des Polygons | double precision |
-| reachfactor |  | double precision |
-| center | Spalte für den Mittelpunkt des Polygons | POINT |
-| geom | Spalte für das Polygon | MULTIPOLYGON |
+| id | integer | id eines rings eines isochron |
+| client | varchar(128) |  |
+| value | integer |  |
+| area | double precision | Fläche des Polygons |
+| reachfactor | double precision |  |
+| center | POINT | Spalte für den Mittelpunkt des Polygons |
+| geom | MULTIPOLYGON | Spalte für das Polygon |
+| donut | MULTIPOLYGON | nur der Teil, der nicht von den anderen Polygonen besetzt wird |
 | modtime | timestamp | Zeitpunkt zu dem der Datensatz eingefügt wurde |
-
 
 
     CREATE TABLE ISOCHRONE (
@@ -68,6 +68,7 @@ Diese Schnittstelle liefert Informationen zu allen auf dem System vorhandenen Cl
     );
     SELECT AddGeometryColumn ('public','isochrone','center',4326,'POINT',2);
     SELECT AddGeometryColumn ('public','isochrone','geom',4326,'MULTIPOLYGON',2);
+    SELECT AddGeometryColumn ('public','isochrone','donut',4326,'MULTIPOLYGON',2);
     
 ## Verbindungsparameter
 
