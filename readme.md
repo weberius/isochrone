@@ -27,6 +27,10 @@ Diese Schnittstelle liefert alle für den Client gespeicherten isochronen aus. M
 
 Diese Schnittstelle liefert Informationen zu allen auf dem System vorhandenen Clients.
 
+# User Interface
+
+Um die in der Datenbank vorhandenen Isochrone prüfen zu können, steht eine einfache Benutzeroberfläche auf Basis von leaflet zur Verfügung. Zur Verwendung muss in '/isochrone/src/main/webapp/assets/js/app.js' die url zum darzustellenden Isochron angepasst werden.
+
 # Datenbank
 
 ## DB User auf Postgres einrichten
