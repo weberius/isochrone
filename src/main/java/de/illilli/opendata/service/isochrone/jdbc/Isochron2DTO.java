@@ -30,7 +30,6 @@ public class Isochron2DTO extends IsochronDTO {
 		// setValue
 		setValue((Integer) feature.getProperty("value"));
 		// setArea
-		System.out.println("area: " + feature.getProperty("area"));
 		double area = 0.0;
 		if (feature.getProperty("area") instanceof Integer) {
 			area = (int) feature.getProperty("area");

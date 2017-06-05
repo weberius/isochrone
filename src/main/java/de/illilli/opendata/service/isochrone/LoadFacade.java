@@ -25,6 +25,8 @@ import de.illilli.opendata.service.isochrone.askfor.AskForIsochrone;
 import de.illilli.opendata.service.isochrone.jdbc.DeleteIsochroneByClient;
 import de.illilli.opendata.service.isochrone.jdbc.InsertIsochrone;
 import de.illilli.opendata.service.isochrone.jdbc.Isochron2DTO;
+import de.illilli.opendata.service.isochrone.jdbc.UpdateIsochron;
+import de.illilli.opendata.service.isochrone.jdbc.UpdateIsochronForDonat;
 
 /**
  * Die LoadFacade erwartet die zu verarbeitenden Dateien im per "data.directory"
@@ -59,6 +61,15 @@ public class LoadFacade implements Facade {
 				for (Feature feature : features) {
 					new InsertDao(new InsertIsochrone(new Isochron2DTO(client, feature)), conn).execute();
 					featureCounter++;
+				}
+				// update for donuts
+				// geom has to be already in database
+				for (Feature feature : features) {
+					if ((Integer) feature.getProperty("id") == 0) {
+						new UpdateDao(new UpdateIsochron(new Isochron2DTO(client, feature)), conn).execute();
+					} else {
+						new UpdateDao(new UpdateIsochronForDonat(new Isochron2DTO(client, feature)), conn).execute();
+					}
 				}
 			}
 			fileCounter++;
